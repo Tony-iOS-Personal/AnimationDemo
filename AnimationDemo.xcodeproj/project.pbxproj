@@ -15,6 +15,7 @@
 		B6ADBE3A224B4BD70001F3F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ADBE39224B4BD70001F3F3 /* main.m */; };
 		B6ADBE42224B7B030001F3F3 /* UIAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ADBE41224B7B030001F3F3 /* UIAnimationViewController.m */; };
 		B6ADBE45224C79290001F3F3 /* CAAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ADBE44224C79290001F3F3 /* CAAnimationVC.m */; };
+		B6ADBE48224F4D630001F3F3 /* UIImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6ADBE47224F4D630001F3F3 /* UIImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		B6ADBE41224B7B030001F3F3 /* UIAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIAnimationViewController.m; sourceTree = "<group>"; };
 		B6ADBE43224C79290001F3F3 /* CAAnimationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAAnimationVC.h; sourceTree = "<group>"; };
 		B6ADBE44224C79290001F3F3 /* CAAnimationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAAnimationVC.m; sourceTree = "<group>"; };
+		B6ADBE46224F4D630001F3F3 /* UIImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIImageViewController.h; sourceTree = "<group>"; };
+		B6ADBE47224F4D630001F3F3 /* UIImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 				B6ADBE41224B7B030001F3F3 /* UIAnimationViewController.m */,
 				B6ADBE43224C79290001F3F3 /* CAAnimationVC.h */,
 				B6ADBE44224C79290001F3F3 /* CAAnimationVC.m */,
+				B6ADBE46224F4D630001F3F3 /* UIImageViewController.h */,
+				B6ADBE47224F4D630001F3F3 /* UIImageViewController.m */,
 				B6ADBE30224B4BD20001F3F3 /* Main.storyboard */,
 				B6ADBE33224B4BD70001F3F3 /* Assets.xcassets */,
 				B6ADBE35224B4BD70001F3F3 /* LaunchScreen.storyboard */,
@@ -151,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ADBE48224F4D630001F3F3 /* UIImageViewController.m in Sources */,
 				B6ADBE2F224B4BD20001F3F3 /* ViewController.m in Sources */,
 				B6ADBE3A224B4BD70001F3F3 /* main.m in Sources */,
 				B6ADBE45224C79290001F3F3 /* CAAnimationVC.m in Sources */,

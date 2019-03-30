@@ -1,8 +1,8 @@
 //
-//  CAAnimationVC.h
+//  UIImageViewController.h
 //  AnimationDemo
-//  核心动画
-//  Created by 邵广涛 on 2019/3/28.
+//  序列帧动画
+//  Created by 邵广涛 on 2019/3/30.
 //  Copyright © 2019年 SGT. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CAAnimationVC : UIViewController
+@interface UIImageViewController : UIViewController
 
 @end
 

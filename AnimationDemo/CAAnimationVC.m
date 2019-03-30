@@ -12,7 +12,7 @@
 {
     NSInteger _transtionIndex;
 }
-@property(nonatomic,strong)CALayer *aniLayer;
+@property(nonatomic,strong)CALayer *animationLayer;
 //
 @property(nonatomic,strong)CADisplayLink *displayLink;
 
@@ -29,11 +29,11 @@
     
     NSArray *buttonNames = @[@"位移",@"缩放",@"透明度",@"旋转",@"圆角",@"spring动画",@"晃动",@"曲线位移",@"转场",@"动画组"];
     
-    self.aniLayer = [[CALayer alloc] init];
-    _aniLayer.bounds = CGRectMake(0, 0, 100, 100);
-    _aniLayer.position = self.view.center;
-    _aniLayer.backgroundColor = [UIColor redColor].CGColor;
-    [self.view.layer addSublayer:_aniLayer];
+    self.animationLayer = [[CALayer alloc] init];
+    _animationLayer.bounds = CGRectMake(0, 0, 100, 100);
+    _animationLayer.position = self.view.center;
+    _animationLayer.backgroundColor = [UIColor redColor].CGColor;
+    [self.view.layer addSublayer:_animationLayer];
     //
     for (int i = 0; i < buttonNames.count; i++) {
         UIButton *aniButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -78,7 +78,7 @@
 }
 
 -(void)handleDisplayLink:(CADisplayLink *)displayLink{
-    NSLog(@"modelLayer_%@,presentLayer_%@",[NSValue valueWithCGPoint:_aniLayer.position],[NSValue valueWithCGPoint:_aniLayer.presentationLayer.position]);
+    NSLog(@"modelLayer_%@,presentLayer_%@",[NSValue valueWithCGPoint:_animationLayer.position],[NSValue valueWithCGPoint:_animationLayer.presentationLayer.position]);
 }
 
 -(void)basicAnimationWithTag:(NSInteger)tag{
@@ -133,7 +133,7 @@
     //添加动画
     NSString *key = NSStringFromSelector(_cmd);
     NSLog(@"动画的key ======= %@",key);
-    [_aniLayer addAnimation:basicAni forKey:key];
+    [_animationLayer addAnimation:basicAni forKey:key];
 }
 //CASpringAnimation
 -(void)springAnimation{
@@ -141,10 +141,10 @@
     springAni.damping = 2;
     springAni.stiffness = 50;
     springAni.mass = 1;
-    springAni.initialVelocity = 10;
-    springAni.toValue = [NSValue valueWithCGPoint:CGPointMake(200, 400)];
+    springAni.initialVelocity = 2;
+    springAni.toValue = [NSValue valueWithCGPoint:CGPointMake(270, 350)];
     springAni.duration = springAni.settlingDuration;
-    [_aniLayer addAnimation:springAni forKey:@"springAnimation"];
+    [_animationLayer addAnimation:springAni forKey:@"springAnimation"];
 }
 //关键帧动画
 -(void)keyframeAnimationWithTag:(NSInteger)tag{
@@ -152,19 +152,20 @@
     if (tag == 6) {
         //晃动
         keyFrameAni = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-        keyFrameAni.duration = 0.3;
-        keyFrameAni.values = @[@(-(4) / 180.0*M_PI),@((4) / 180.0*M_PI),@(-(4) / 180.0*M_PI)];
-        keyFrameAni.repeatCount=MAXFLOAT;
+        keyFrameAni.duration = 2;
+        keyFrameAni.values = @[@(-(6) / 180.0*M_PI),@((6) / 180.0*M_PI),@(-(5) / 180.0*M_PI),@((5) / 180.0*M_PI),@(-(4) / 180.0*M_PI),@((4) / 180.0*M_PI),@(-(4) / 180.0*M_PI)];
+        keyFrameAni.keyTimes = @[ @(0), @(0.225), @(0.425), @(0.6), @(0.75), @(0.875), @(1)];
+        keyFrameAni.repeatCount = MAXFLOAT;
     }else if (tag == 7){
         //曲线位移
         keyFrameAni = [CAKeyframeAnimation animationWithKeyPath:@"position"];
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:_aniLayer.position];
-        [path addCurveToPoint:CGPointMake(300, 500) controlPoint1:CGPointMake(100, 400) controlPoint2:CGPointMake(300, 450)];
+        [path moveToPoint:_animationLayer.position];
+        [path addCurveToPoint:CGPointMake(300, 500) controlPoint1:CGPointMake(100, 400) controlPoint2:CGPointMake(270, 460)];
         keyFrameAni.path = path.CGPath;
         keyFrameAni.duration = 1;
     }
-    [_aniLayer addAnimation:keyFrameAni forKey:@"keyFrameAnimation"];
+    [_animationLayer addAnimation:keyFrameAni forKey:@"keyFrameAnimation"];
 }
 //转场动画
 -(void)transitionAnimation{
@@ -177,22 +178,22 @@
         case 1:
             transtion.type = @"cube";
             transtion.subtype = kCATransitionFromLeft;
-            _aniLayer.backgroundColor = [UIColor yellowColor].CGColor;
+            _animationLayer.backgroundColor = [UIColor yellowColor].CGColor;
             break;
         case 2:
             transtion.type = @"rippleEffect";
             transtion.subtype = kCATransitionFromTop;
-            _aniLayer.backgroundColor = [UIColor blueColor].CGColor;
+            _animationLayer.backgroundColor = [UIColor blueColor].CGColor;
             break;
         case 3:
             transtion.type = @"moveIn";
             transtion.subtype = kCATransitionFromRight;
-            _aniLayer.backgroundColor = [UIColor magentaColor].CGColor;
+            _animationLayer.backgroundColor = [UIColor magentaColor].CGColor;
             break;
         case 4:
             transtion.type = @"suckEffect";
             transtion.subtype = kCATransitionFromBottom;
-            _aniLayer.backgroundColor = [UIColor orangeColor].CGColor;
+            _animationLayer.backgroundColor = [UIColor orangeColor].CGColor;
             break;
         default:
             break;
@@ -200,23 +201,26 @@
     if (_transtionIndex >= 4) {
         _transtionIndex = 1;
     }
-    [_aniLayer addAnimation:transtion forKey:@"transtion"];
+    [_animationLayer addAnimation:transtion forKey:@"transtion"];
 }
+
+
 
 //动画组
 -(void)animationGroup{
-    //晃动动画
-    CAKeyframeAnimation *keyFrameAni = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
-    keyFrameAni.values = @[@(-(4) / 180.0*M_PI),@((4) / 180.0*M_PI),@(-(4) / 180.0*M_PI)];
+    //弹动动画
+    CAKeyframeAnimation *keyFrameAni = [CAKeyframeAnimation animationWithKeyPath:@"position.y"];
+    CGFloat ty = _animationLayer.position.y;
+    keyFrameAni.values = @[@(ty - 100),@(ty),@(ty - 50),@(ty)];
     //每一个动画可以单独设置时间和重复次数,在动画组的时间基础上,控制单动画的效果
     keyFrameAni.duration = 0.3;
-    keyFrameAni.repeatCount=MAXFLOAT;
+    keyFrameAni.repeatCount= MAXFLOAT;
     keyFrameAni.delegate = self;
     //
-    //位移动画
-    CABasicAnimation *basicAni = [CABasicAnimation animationWithKeyPath:@"position"];
+    //圆角动画
+    CABasicAnimation *basicAni = [CABasicAnimation animationWithKeyPath:@"cornerRadius"];
     //到达位置
-    basicAni.byValue = [NSValue valueWithCGPoint:CGPointMake(100, 100)];
+    basicAni.byValue = @(_animationLayer.bounds.size.width/2);
     //
     basicAni.duration = 1;
     basicAni.repeatCount = 1;
@@ -234,7 +238,7 @@
     aniGroup.duration = 3;
     aniGroup.repeatCount=MAXFLOAT;
     //
-    [_aniLayer addAnimation:aniGroup forKey:@"groupAnimation"];
+    [_animationLayer addAnimation:aniGroup forKey:@"groupAnimation"];
 }
 //控制动画状态按钮点击
 -(void)btnClick:(UIButton *)sender{
@@ -256,26 +260,26 @@
 //暂停动画
 -(void)animationPause{
     //获取当前layer的动画媒体时间
-    CFTimeInterval interval = [_aniLayer convertTime:CACurrentMediaTime() toLayer:nil];
+    CFTimeInterval interval = [_animationLayer convertTime:CACurrentMediaTime() toLayer:nil];
     //设置时间偏移量,保证停留在当前位置
-    _aniLayer.timeOffset = interval;
+    _animationLayer.timeOffset = interval;
     //暂定动画
-    _aniLayer.speed = 0;
+    _animationLayer.speed = 0;
 }
 //恢复动画
 -(void)animationResume{
     //获取暂停的时间
-    CFTimeInterval beginTime = CACurrentMediaTime() - _aniLayer.timeOffset;
+    CFTimeInterval beginTime = CACurrentMediaTime() - _animationLayer.timeOffset;
     //设置偏移量
-    _aniLayer.timeOffset = 0;
+    _animationLayer.timeOffset = 0;
     //设置开始时间
-    _aniLayer.beginTime = beginTime;
+    _animationLayer.beginTime = beginTime;
     //开始动画
-    _aniLayer.speed = 1;
+    _animationLayer.speed = 1;
 }
 //停止动画
 -(void)animationStop{
-    [_aniLayer removeAllAnimations];
+    [_animationLayer removeAllAnimations];
     //[_aniLayer removeAnimationForKey:@"groupAnimation"];
 }
 

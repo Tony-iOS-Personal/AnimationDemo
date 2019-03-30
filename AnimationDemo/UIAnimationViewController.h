@@ -1,7 +1,7 @@
 //
 //  UIAnimationViewController.h
 //  AnimationDemo
-//
+//  基础动画
 //  Created by 邵广涛 on 2019/3/27.
 //  Copyright © 2019年 SGT. All rights reserved.
 //
