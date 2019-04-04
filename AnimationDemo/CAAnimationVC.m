@@ -236,7 +236,7 @@
     aniGroup.autoreverses = YES;
     //动画的表现时间和重复次数由动画组设置的决定
     aniGroup.duration = 3;
-    aniGroup.repeatCount=MAXFLOAT;
+    aniGroup.repeatCount= MAXFLOAT;
     //
     [_animationLayer addAnimation:aniGroup forKey:@"groupAnimation"];
 }
@@ -279,8 +279,8 @@
 }
 //停止动画
 -(void)animationStop{
-    [_animationLayer removeAllAnimations];
-    //[_aniLayer removeAnimationForKey:@"groupAnimation"];
+    [_animationLayer removeAllAnimations];//移除当前层所有动画
+    //[_animationLayer removeAnimationForKey:@"groupAnimation"];//移除当前层上名称是groupAnimation的动画
 }
 
 #pragma mark - CAAnimationDelegate

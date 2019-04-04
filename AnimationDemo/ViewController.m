@@ -10,6 +10,7 @@
 
 #import "UIAnimationViewController.h"
 #import "CAAnimationVC.h"
+#import "UIImageViewController.h"
 
 NSString *const CellId = @"cellId";
 
@@ -45,7 +46,7 @@ NSString *const CellId = @"cellId";
 }
 -(NSArray *)dataArr{
     if (!_dataArr) {
-        _dataArr = @[@"UI动画",@"基础动画",@"",@""];
+        _dataArr = @[@"UI动画",@"基础动画",@"序列帧动画",@""];
     }
     return _dataArr;
 }
@@ -77,6 +78,11 @@ NSString *const CellId = @"cellId";
         case 1:
             animaVC = [[CAAnimationVC alloc]init];
             transtion.type = @"cube";
+            transtion.subtype = kCATransitionFromRight;//kCATransitionFromLeft  kCATransitionFromRight
+            break;
+        case 2:
+            animaVC = [[UIImageViewController alloc]init];
+            transtion.type = @"MoveIn";
             transtion.subtype = kCATransitionFromRight;//kCATransitionFromLeft  kCATransitionFromRight
             break;
         default:
