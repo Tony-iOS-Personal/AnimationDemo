@@ -25,7 +25,7 @@
     // Do any additional setup after loading the view.
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.title = @"CAAnimationVC动画";
+    self.title = @"CAAnimation 动画";
     
     NSArray *buttonNames = @[@"位移",@"缩放",@"透明度",@"旋转",@"圆角",@"spring动画",@"晃动",@"曲线位移",@"转场",@"动画组"];
     

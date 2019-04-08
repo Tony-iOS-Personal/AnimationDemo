@@ -1,0 +1,16 @@
+PODS:
+  - SGTToolSDK (0.1.0)
+
+DEPENDENCIES:
+  - SGTToolSDK (= 0.1.0)
+
+SPEC REPOS:
+  https://github.com/Tony-iOS-Personal/SGTSpecs.git:
+    - SGTToolSDK
+
+SPEC CHECKSUMS:
+  SGTToolSDK: 5f73ee927780eafbf6c673468ce5e53306ffce33
+
+PODFILE CHECKSUM: 2e638d2ab350acf0eb909457d60cd6e862a76984
+
+COCOAPODS: 1.5.3

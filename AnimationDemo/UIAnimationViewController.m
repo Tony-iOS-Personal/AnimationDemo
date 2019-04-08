@@ -55,7 +55,7 @@ UIViewAnimationOptionTransitionFlipFromBottom：从底部翻转效果。
     // Do any additional setup after loading the view.
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.title = @"UIView动画";
+    self.title = @"UIView 动画";
 
     NSArray *buttonNames = @[@"位移",@"缩放",@"透明度",@"弹动",@"转场",@"变色龙"];
 
